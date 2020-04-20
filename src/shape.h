@@ -8,7 +8,7 @@
 
 namespace rt {
 
-enum struct ShapeType { BASE, SPHERE, PLANE, CUBE, CYLINDER };
+enum struct ShapeType { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE };
 
 struct Shape {
   Shape() = default;

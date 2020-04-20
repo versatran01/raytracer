@@ -31,8 +31,8 @@ int main(int argc, char** argv) {
   middle.material.refractive_index = 1.0;
   middle.material.reflective = 0.5;
 
-  Sphere right;
-  right.transform = Translation3(1.5, 0.5, -0.5) * Scaling3(0.5);
+  Cone right(-1, 0, true);
+  right.transform = Translation3(1.5, 1, -0.5) * Scaling3(1.0, 2.0, 1.0);
   right.material = middle.material;
   right.material.color = Color(0.5, 1, 0.1);
 
