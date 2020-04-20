@@ -34,6 +34,7 @@ struct Shape {
   Material material;
   Transform transform{Transform::Identity()};
   ShapeType type{ShapeType::BASE};
+  Shape* parent{nullptr};
 };
 
 }  // namespace rt
