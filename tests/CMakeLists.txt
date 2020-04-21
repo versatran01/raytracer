@@ -17,6 +17,7 @@ set(TEST_SOURCES
     cube_test.cpp
     cylinder_test.cpp
     cone_test.cpp
+    group_test.cpp
     render_test.cpp)
 
 add_executable(raytracer_test_main raytracer_test_main.cpp ${TEST_SOURCES})

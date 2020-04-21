@@ -6,6 +6,7 @@
 
 using namespace rt;
 
-SCENARIO("The default transformation") {
-
+SCENARIO("A shape has a parent attribute") {
+  const Sphere s;
+  CHECK(s.parent == nullptr);
 }
