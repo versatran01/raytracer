@@ -5,20 +5,21 @@
 namespace rt {
 
 struct Group : public Shape {
-  Intersections LocalIntersect(const Ray& ray) const final override;
+  Group() : Shape(ShapeType::GROUP) {}
 
-  Vector3 LocalNormalAt(const Point3& point) const final override {
-    throw std::runtime_error("not implemented");
-  }
+  Intersections LocalIntersect(const Ray& ray) const override;
+
+  Vector3 LocalNormalAt(const Point3& point) const override { return {}; }
 
   template <typename T>
-  void AddChild(const T& t) {
-    shapes.emplace_back(std::make_unique<T>(t));
-    shapes.back()->parent = this;
+  void AddChild(const T& shape) {
+    auto& s = shapes.emplace_back(std::make_shared<T>(shape));
+    s->parent = this;
   }
 
   bool empty() const noexcept { return shapes.empty(); }
-  std::vector<std::unique_ptr<Shape>> shapes;
+
+  std::vector<std::shared_ptr<Shape>> shapes;
 };
 
 }  // namespace rt

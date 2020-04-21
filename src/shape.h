@@ -8,7 +8,7 @@
 
 namespace rt {
 
-enum struct ShapeType { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE };
+enum struct ShapeType { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE, GROUP };
 
 struct Shape {
   Shape() = default;
@@ -26,6 +26,9 @@ struct Shape {
   }
 
   Vector3 NormalAt(const Point3& point) const noexcept;
+
+  Point3 World2Object(const Point3& point) const noexcept;
+  Vector3 Normal2World(const Vector3& normal) const noexcept;
 
   virtual Intersections LocalIntersect(const Ray& ray) const = 0;
   virtual Vector3 LocalNormalAt(const Point3& point) const = 0;
