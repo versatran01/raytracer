@@ -12,9 +12,11 @@ struct Group : public Shape {
   Vector3 LocalNormalAt(const Point3& point) const override { return {}; }
 
   template <typename T>
-  void AddChild(const T& shape) {
-    auto& s = shapes.emplace_back(std::make_shared<T>(shape));
+  T& AddChild(const T& shape) {
+    auto s = std::make_shared<T>(shape);
+    shapes.push_back(s);
     s->parent = this;
+    return *s;
   }
 
   bool empty() const noexcept { return shapes.empty(); }

@@ -18,10 +18,6 @@ Vector3 Shape::NormalAt(const Point3& point) const noexcept {
 }
 
 Point3 Shape::World2Object(const Point3& point) const noexcept {
-  LOG(INFO) << "inside: " << id;
-  if (parent) {
-    LOG(INFO) << "paretn: " << parent->id;
-  }
   return transform.inverse() *
          (parent == nullptr ? point : parent->World2Object(point));
 }
