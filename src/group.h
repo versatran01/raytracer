@@ -4,12 +4,12 @@
 
 namespace rt {
 
-struct Group : public Shape {
+struct Group final : public Shape {
   Group() : Shape(ShapeType::GROUP) {}
 
   Intersections LocalIntersect(const Ray& ray) const override;
 
-  Vector3 LocalNormalAt(const Point3& point) const override { return {}; }
+  Vector3 LocalNormalAt(const Point3& point) const override;
 
   template <typename T>
   T& AddChild(const T& shape) {

@@ -4,14 +4,14 @@
 
 namespace rt {
 
-struct Sphere : public Shape {
+struct Sphere final : public Shape {
   Sphere() noexcept : Shape(ShapeType::SPHERE) {}
 
-  Vector3 LocalNormalAt(const Point3& point) const override final {
+  Vector3 LocalNormalAt(const Point3& point) const override {
     return point - Point3::Zero();
   }
 
-  Intersections LocalIntersect(const Ray& ray) const override final;
+  Intersections LocalIntersect(const Ray& ray) const override;
 };
 
 Sphere GlassSphere() noexcept;

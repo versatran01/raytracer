@@ -43,3 +43,16 @@ SCENARIO("Converting a normal from object to world space") {
   const auto n = s_.Normal2World(Vector3::Constant(kSqrt3 / 3));
   CHECK((n - Vector3(0.2857, 0.4286, -0.8571)).norm() < 1e-4);
 }
+
+SCENARIO("Finding the normal on a child object") {
+  Group g1;
+  g1.transform = RotY(kPi / 2);
+  Group g2;
+  g2.transform = Scaling3(1, 2, 3);
+  Sphere s;
+  s.transform = Translation3(5, 0, 0);
+
+  const auto& s_ = g1.AddChild(g2).AddChild(s);
+  const auto n = s_.NormalAt({1.7321, 1.1547, -5.5774});
+  CHECK((n - Vector3(0.2857, 0.4286, -0.8571)).norm() < 1e-4);
+}

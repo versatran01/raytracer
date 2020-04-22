@@ -4,11 +4,11 @@
 
 namespace rt {
 
-struct Cube : public Shape {
+struct Cube final : public Shape {
   Cube() noexcept : Shape(ShapeType::CUBE) {}
 
-  Intersections LocalIntersect(const Ray& ray) const override final;
-  Vector3 LocalNormalAt(const Point3& point) const override final;
+  Intersections LocalIntersect(const Ray& ray) const override;
+  Vector3 LocalNormalAt(const Point3& point) const override;
 };
 
 Array2d CheckAxis(scalar origin, scalar direction) noexcept;

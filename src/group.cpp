@@ -1,5 +1,7 @@
 #include "group.h"
 
+#include "logging.h"
+
 namespace rt {
 
 Intersections Group::LocalIntersect(const Ray& ray) const {
@@ -17,6 +19,11 @@ Intersections Group::LocalIntersect(const Ray& ray) const {
   });
 
   return all;
+}
+
+Vector3 Group::LocalNormalAt(const Point3& point) const {
+  CHECK(false) << "should never happen";
+  return {};
 }
 
 }  // namespace rt
