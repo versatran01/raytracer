@@ -15,6 +15,12 @@ struct Group final : public Shape {
   T& AddChild(const T& shape) {
     auto s = std::make_shared<T>(shape);
     shapes.push_back(s);
+
+    // need to fix parent in shape's children
+    if constexpr (std::is_same_v<T, Group>) {
+      for (auto& c : s->shapes) c->parent = s.get();
+    }
+
     s->parent = this;
     return *s;
   }

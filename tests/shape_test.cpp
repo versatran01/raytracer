@@ -36,9 +36,8 @@ SCENARIO("Converting a normal from object to world space") {
   Sphere s;
   s.transform = Translation3(5, 0, 0);
 
-  const auto& s_ = g1.AddChild(g2).AddChild(s);
-  CHECK(s_.parent->id == g2.id);
-  CHECK(s_.parent->parent->id == g1.id);
+  g2.AddChild(s);
+  const auto s_ = g1.AddChild(g2);
 
   const auto n = s_.Normal2World(Vector3::Constant(kSqrt3 / 3));
   CHECK((n - Vector3(0.2857, 0.4286, -0.8571)).norm() < 1e-4);

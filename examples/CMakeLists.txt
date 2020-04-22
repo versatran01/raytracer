@@ -12,3 +12,6 @@ target_link_libraries(shading_demo PRIVATE raytracer)
 
 add_executable(render_demo render_demo.cpp)
 target_link_libraries(render_demo PRIVATE raytracer)
+
+add_executable(group_demo group_demo.cpp)
+target_link_libraries(group_demo PRIVATE raytracer)
