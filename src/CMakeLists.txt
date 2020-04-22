@@ -12,6 +12,7 @@ add_library(
   cylinder.cpp
   cone.cpp
   group.cpp
+  triangle.cpp
   timer.cpp)
 target_include_directories(raytracer PUBLIC .)
 target_link_libraries(

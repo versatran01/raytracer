@@ -19,6 +19,7 @@ set(TEST_SOURCES
     cone_test.cpp
     group_test.cpp
     shape_test.cpp
+    triangle_test.cpp
     render_test.cpp)
 
 add_executable(raytracer_test_main raytracer_test_main.cpp ${TEST_SOURCES})

@@ -4,10 +4,13 @@
 #include "logging.h"
 #include "render.h"
 #include "shapes.h"
+#include "timer.h"
 
 using namespace rt;
 
 int main(int argc, char** argv) {
+  TimerSummary ts("render_demo");
+
   Plane floor;
   floor.transform = Translation3(0, 0, 0);
   floor.material.color = Color(1, 0.9, 0.9);
@@ -67,7 +70,11 @@ int main(int argc, char** argv) {
       kPi / 3,
       ViewTransform(Point3(0, 1.5, -5), Point3(0, 1, 0), Vector3(0, 1, 0)));
 
+  auto t = ts.Manual("render");
   const auto canvas = Render(camera, world, 4);
+  t.Stop();
+  LOG(INFO) << ts.ReportAll();
+
   cv::imshow("image", canvas.ToBgr());
   cv::waitKey(-1);
 

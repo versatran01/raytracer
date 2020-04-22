@@ -6,3 +6,4 @@
 #include "group.h"
 #include "plane.h"
 #include "sphere.h"
+#include "triangle.h"
