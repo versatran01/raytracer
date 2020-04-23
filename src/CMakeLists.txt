@@ -5,16 +5,16 @@ add_library(
   world.cpp
   camera.cpp
   render.cpp
-  sphere.cpp
   pattern.cpp
-  shape.cpp
-  cube.cpp
-  cylinder.cpp
-  cone.cpp
-  group.cpp
-  triangle.cpp
-  timer.cpp)
-target_include_directories(raytracer PUBLIC .)
+  shapes/shape.cpp
+  shapes/cube.cpp
+  shapes/cylinder.cpp
+  shapes/cone.cpp
+  shapes/group.cpp
+  shapes/triangle.cpp
+  shapes/sphere.cpp
+  utils/timer.cpp)
+target_include_directories(raytracer PUBLIC . utils shapes)
 target_link_libraries(
   raytracer
   PUBLIC glog::glog
