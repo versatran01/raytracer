@@ -18,3 +18,6 @@ target_link_libraries(group_demo PRIVATE raytracer)
 
 add_executable(triangle_demo triangle_demo.cpp)
 target_link_libraries(triangle_demo PRIVATE raytracer)
+
+add_executable(parser_demo parser_demo.cpp)
+target_link_libraries(parser_demo PRIVATE raytracer)

@@ -17,7 +17,9 @@ struct Group final : public Shape {
 
     // need to fix parent in shape's children
     if constexpr (std::is_same_v<T, Group>) {
-      for (auto& c : s->shapes) c->parent = s.get();
+      for (auto& c : s->shapes) {
+        c->parent = s.get();
+      }
     }
 
     s->parent = this;

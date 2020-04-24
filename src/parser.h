@@ -19,6 +19,9 @@ struct Parser {
   std::unordered_map<std::string, Group> named_groups;
 
   const Group* GetGroup(const std::string& name) const;
+
+  // Convert to group
+  Group ToGroup() const;
 };
 
 Parser Parse(std::istream& in);

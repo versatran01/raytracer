@@ -146,3 +146,25 @@ SCENARIO("Triangles in groups") {
   CHECK(t2->p2 == res.vertices[2]);
   CHECK(t2->p3 == res.vertices[3]);
 }
+
+SCENARIO("Converting an OBJ file to a group") {
+  const std::string file =
+      "v -1 1 0\n"
+      "v -1 0 0\n"
+      "v 1 0 0\n"
+      "v 1 1 0\n"
+      "v 0 2 0\n"
+      "g FirstGroup\n"
+      "f 1 2 3\n"
+      "g SecondGroup\n"
+      "f 1 3 4\n";
+
+  std::istringstream iss(file);
+  const auto res = Parse(iss);
+  const auto group = res.ToGroup();
+
+  REQUIRE(group.shapes.size() == 2);
+  for (const auto& sub_group : group.shapes) {
+    CHECK(sub_group->parent->id == group.id);
+  }
+}

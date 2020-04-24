@@ -51,11 +51,11 @@ Parser Parse(std::istream& in) {
     if (line.empty()) continue;
 
     std::istringstream il(line);
-    char header;
+    std::string header;
     il >> header;
 
     // this is a group
-    if (header == 'g') {
+    if (header == "g") {
       // Parse the group name and change current group
       il >> group_name;
 
@@ -65,14 +65,14 @@ Parser Parse(std::istream& in) {
         // switch current group
         group = &res.named_groups[group_name];
       }
-    } else if (header == 'v') {
+    } else if (header == "v") {
       const auto p = ParseVertex(il);
       if (p) {
         res.vertices.push_back(*p);
       } else {
         LOG(WARNING) << "Failed to parse vertex: " << line;
       }
-    } else if (header == 'f') {
+    } else if (header == "f") {
       std::vector<int> indices(std::istream_iterator<int>{il},
                                std::istream_iterator<int>{});
       const auto n = indices.size();
@@ -85,12 +85,26 @@ Parser Parse(std::istream& in) {
       }
     } else {
       // Not a valid line
-      LOG(WARNING) << "skipped line: " << line;
       ++res.num_lines_skipped;
     }
   }
 
   return res;
+}
+
+Group Parser::ToGroup() const {
+  Group group = default_group;
+
+  for (auto& c : group.shapes) {
+    c->parent = &group;
+  }
+
+  // Add named groups
+  for (const auto& [k, g] : named_groups) {
+    group.AddChild(g);
+  }
+
+  return group;
 }
 
 Opt<Point3> ParseVertex(std::istream& in) {
