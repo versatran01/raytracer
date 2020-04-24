@@ -4,7 +4,7 @@
 
 namespace rt {
 
-struct Triangle final : public Shape {
+struct Triangle : public Shape {
   Triangle() = default;
   Triangle(const Point3& p1, const Point3& p2, const Point3& p3)
       : p1(p1),
@@ -21,5 +21,6 @@ struct Triangle final : public Shape {
   Vector3 e1, e2;
   Vector3 normal;
 };
+
 
 }  // namespace rt

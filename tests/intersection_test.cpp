@@ -120,3 +120,10 @@ SCENARIO("The Schlick approximation with small angle n2 > n1") {
   const Computations comps(xs[0], r, xs);
   CHECK(comps.Schlick() == doctest::Approx(0.48873));
 }
+
+SCENARIO("An intersection with u and v") {
+  const Triangle t({0, 1, 0}, {-1, 0, 0}, {1, 0, 0});
+  const Intersection i(3.5, &t, 0.2, 0.4);
+  CHECK(i.u == 0.2);
+  CHECK(i.v == 0.4);
+}

@@ -19,7 +19,7 @@ Intersections Triangle::LocalIntersect(const Ray& ray) const {
   if (v < 0 || (u + v) > 1) return {};
 
   const auto t = f * Dot(e2, origin_cross_e1);
-  return {{t, this}};
+  return {{t, this, u, v}};
 }
 
 }  // namespace rt

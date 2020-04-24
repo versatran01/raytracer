@@ -21,6 +21,7 @@ set(TEST_SOURCES
     shape_test.cpp
     triangle_test.cpp
     parser_test.cpp
+    smooth_triangle_test.cpp
     render_test.cpp)
 
 add_executable(raytracer_test_main raytracer_test_main.cpp ${TEST_SOURCES})

@@ -13,6 +13,7 @@ add_library(
   shapes/cone.cpp
   shapes/group.cpp
   shapes/triangle.cpp
+  shapes/smooth_triangle.cpp
   shapes/sphere.cpp
   utils/timer.cpp)
 target_include_directories(raytracer PUBLIC . utils shapes)
