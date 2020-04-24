@@ -6,6 +6,7 @@ add_library(
   camera.cpp
   render.cpp
   pattern.cpp
+  parser.cpp
   shapes/shape.cpp
   shapes/cube.cpp
   shapes/cylinder.cpp
