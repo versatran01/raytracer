@@ -33,7 +33,7 @@ struct Shape {
   virtual Intersections LocalIntersect(const Ray& ray) const = 0;
   virtual Vector3 LocalNormalAt(const Point3& point) const = 0;
 
-  const int id{count++};
+  int id{count++};
   Material material;
   Transform transform{Transform::Identity()};
   ShapeType type{ShapeType::BASE};

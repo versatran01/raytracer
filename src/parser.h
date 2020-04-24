@@ -1,6 +1,7 @@
 #pragma once
 
 #include <istream>
+#include <unordered_map>
 
 #include "group.h"
 #include "triangle.h"
@@ -8,16 +9,19 @@
 
 namespace rt {
 
+std::vector<Triangle> FanTriangulation(const std::vector<int>& indices,
+                                       const std::vector<Point3>& vertices);
+
 struct Parser {
-  struct Result {
-    int num_lines_skipped{0};
-    std::vector<Point3> vertices;
-    Group group;
-  };
+  int num_lines_skipped{0};
+  std::vector<Point3> vertices;
+  Group default_group;
+  std::unordered_map<std::string, Group> named_groups;
 
-  Opt<Point3> ParseVertex(const std::string& line) const;
-
-  Result Parse(std::istream& stream) const;
+  const Group* GetGroup(const std::string& name) const;
 };
+
+Parser Parse(std::istream& in);
+Opt<Point3> ParseVertex(std::istream& in);
 
 }  // namespace rt

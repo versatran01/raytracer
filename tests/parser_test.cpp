@@ -15,8 +15,7 @@ SCENARIO("Ignoring unrecognized lines") {
       " and came back the previous night.​";
 
   std::istringstream iss(gibberish);
-  Parser p;
-  const auto res = p.Parse(iss);
+  const auto res = Parse(iss);
   CHECK(res.num_lines_skipped == 5);
 }
 
@@ -28,8 +27,7 @@ SCENARIO("Vertex records") {
       "v 1 1 0\n";
 
   std::istringstream iss(file);
-  Parser p;
-  const auto res = p.Parse(iss);
+  const auto res = Parse(iss);
 
   const std::vector<Point3> vertices = {
       {-1, 1, 0}, {-1, 0.5, 0}, {1, 0, 0}, {1, 1, 0}};
@@ -51,22 +49,99 @@ SCENARIO("Parsiing triangle faces") {
       "f 1 3 4\n";
 
   std::istringstream iss(file);
-  Parser p;
-  const auto res = p.Parse(iss);
+  const auto res = Parse(iss);
 
   const std::vector<Point3> vertices = {
       {-1, 1, 0}, {-1, 0, 0}, {1, 0, 0}, {1, 1, 0}};
 
   REQUIRE(res.vertices.size() == vertices.size());
-  const auto& g = res.group;
+  const auto& g = res.default_group;
   REQUIRE(g.shapes.size() == 2);
 
-  auto t1 = static_cast<const Triangle*>(g.shapes[0].get());
+  const auto t1p = g.GetShapeAs<Triangle>(0);
+  REQUIRE(t1p != nullptr);
+  const auto& t1 = *t1p;
+  CHECK(t1.p1 == res.vertices[0]);
+  CHECK(t1.p2 == res.vertices[1]);
+  CHECK(t1.p3 == res.vertices[2]);
+
+  const auto t2p = g.GetShapeAs<Triangle>(1);
+  REQUIRE(t2p != nullptr);
+  const auto& t2 = *t2p;
+  CHECK(t2.p1 == res.vertices[0]);
+  CHECK(t2.p2 == res.vertices[2]);
+  CHECK(t2.p3 == res.vertices[3]);
+}
+
+SCENARIO("Triangulating polygons") {
+  const std::string file =
+      "v -1 1 0\n"
+      "v -1 0 0\n"
+      "v 1 0 0\n"
+      "v 1 1 0\n"
+      "v 0 2 0\n"
+      "f 1 2 3 4 5\n";
+
+  std::istringstream iss(file);
+  const auto res = Parse(iss);
+  const auto& g = res.default_group;
+
+  REQUIRE(res.vertices.size() == 5);
+  REQUIRE(g.shapes.size() == 3);
+
+  const auto t1p = g.GetShapeAs<Triangle>(0);
+  REQUIRE(t1p != nullptr);
+  const auto& t1 = *t1p;
+  CHECK(t1.p1 == res.vertices[0]);
+  CHECK(t1.p2 == res.vertices[1]);
+  CHECK(t1.p3 == res.vertices[2]);
+
+  const auto t2p = g.GetShapeAs<Triangle>(1);
+  REQUIRE(t2p != nullptr);
+  const auto& t2 = *t2p;
+  CHECK(t2.p1 == res.vertices[0]);
+  CHECK(t2.p2 == res.vertices[2]);
+  CHECK(t2.p3 == res.vertices[3]);
+
+  const auto t3p = g.GetShapeAs<Triangle>(2);
+  REQUIRE(t3p != nullptr);
+  const auto& t3 = *t3p;
+  CHECK(t3.p1 == res.vertices[0]);
+  CHECK(t3.p2 == res.vertices[3]);
+  CHECK(t3.p3 == res.vertices[4]);
+}
+
+SCENARIO("Triangles in groups") {
+  const std::string file =
+      "v -1 1 0\n"
+      "v -1 0 0\n"
+      "v 1 0 0\n"
+      "v 1 1 0\n"
+      "v 0 2 0\n"
+      "g FirstGroup\n"
+      "f 1 2 3\n"
+      "g SecondGroup\n"
+      "f 1 3 4\n";
+
+  std::istringstream iss(file);
+  const auto res = Parse(iss);
+
+  CHECK(res.named_groups.size() == 2);
+  const auto g1 = res.GetGroup("FirstGroup");
+  CHECK(g1 != nullptr);
+  REQUIRE(g1->shapes.size() == 1);
+  const auto g2 = res.GetGroup("SecondGroup");
+  CHECK(g2 != nullptr);
+  REQUIRE(g2->shapes.size() == 1);
+
+  const auto t1 = g1->GetShapeAs<Triangle>(0);
+  REQUIRE(t1);
   CHECK(t1->p1 == res.vertices[0]);
   CHECK(t1->p2 == res.vertices[1]);
   CHECK(t1->p3 == res.vertices[2]);
 
-  auto t2 = static_cast<const Triangle*>(g.shapes[1].get());
+  const auto t2 = g2->GetShapeAs<Triangle>(0);
+  REQUIRE(t2);
   CHECK(t2->p1 == res.vertices[0]);
   CHECK(t2->p2 == res.vertices[2]);
   CHECK(t2->p3 == res.vertices[3]);
