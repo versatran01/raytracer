@@ -71,6 +71,11 @@ struct IShape {
     return te::call<int>([](const auto& self) { return self.id; }, *this);
   }
 
+  Material material() const noexcept {
+    return te::call<Material>([](const auto& self) { return self.material; },
+                              *this);
+  }
+
   Intersection MakeIntersection(double t) const noexcept {
     return te::call<Intersection>(
         [](const auto& self, double t) { return self.MakeIntersection(t); },

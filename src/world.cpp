@@ -13,11 +13,13 @@ World DefaultWorld(double ambient) noexcept {
     m.color = Color(0.8, 1.0, 0.6);
     m.diffuse = 0.7;
     m.specular = 0.2;
+    m.ambient = ambient;
     world.AddShape(s);
   }
   {
     Sphere s;
     s.transform = Scaling3(0.5);
+    s.material.ambient = ambient;
     world.AddShape(s);
   }
 
