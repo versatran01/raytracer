@@ -4,7 +4,7 @@
 
 namespace rt {
 
-World DefaultWorld() noexcept {
+World DefaultWorld(double ambient) noexcept {
   World world;
 
   {
@@ -31,7 +31,7 @@ Intersections World::Intersect(const Ray& ray) const noexcept {
   // Just be generous at reserving space to avoid repeated allocations
   all.reserve(shapes.size() * 4);
   for (const auto& shape : shapes) {
-    const auto xs = shape->Intersect(ray);
+    const auto xs = shape.Intersect(ray);
     all.insert(all.end(), xs.cbegin(), xs.cend());
   }
   return all;

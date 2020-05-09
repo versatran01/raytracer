@@ -10,7 +10,7 @@ struct World {
 
   template <typename T>
   void AddShape(const T& shape) noexcept {
-    shapes.emplace_back(std::make_unique<T>(shape));
+    shapes.push_back(shape);
   }
 
   void set_light(const PointLight& l) noexcept { light = l; }
@@ -27,9 +27,9 @@ struct World {
   int size() const noexcept { return static_cast<int>(shapes.size()); }
 
   PointLight light;
-  std::vector<std::unique_ptr<Shape>> shapes;
+  std::vector<PolyShape> shapes;
 };
 
-World DefaultWorld() noexcept;
+World DefaultWorld(double ambient = 0.1) noexcept;
 
 }  // namespace rt
