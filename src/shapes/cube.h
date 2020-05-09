@@ -5,7 +5,7 @@
 namespace rt {
 
 struct Cube final : public Shape {
-  Cube() noexcept : Shape(ShapeType::CUBE) {}
+  Cube() noexcept : Shape(Type::CUBE) {}
 
   Intersections LocalIntersect(const Ray& ray) const override;
   Vector3 LocalNormalAt(const Point3& point) const override;

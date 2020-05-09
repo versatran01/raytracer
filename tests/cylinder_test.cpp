@@ -47,7 +47,7 @@ SCENARIO("Normal vector on a cylinder") {
 
 SCENARIO("Intersecting a constrained cylinder") {
   const Cylinder c(1, 2);
-  CHECK(c.type == ShapeType::CYLINDER);
+  CHECK(c.type == Shape::Type::CYLINDER);
   CHECK(c.min == 1);
   CHECK(c.max == 2);
 

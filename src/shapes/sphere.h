@@ -5,7 +5,7 @@
 namespace rt {
 
 struct Sphere final : public Shape {
-  Sphere() noexcept : Shape(ShapeType::SPHERE) {}
+  Sphere() noexcept : Shape(Type::SPHERE) {}
 
   Vector3 LocalNormalAt(const Point3& point) const override {
     return point - Point3::Zero();

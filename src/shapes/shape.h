@@ -5,14 +5,37 @@
 #include "intersection.h"  // Intersections
 #include "material.h"      // Material
 #include "transform.h"     // Transform
+#include "utils/te.hpp"    // te::poly, te::call
 
 namespace rt {
 
-enum struct ShapeType { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE, GROUP };
+namespace te = boost::te;
+
+struct IShape {
+  Intersections Intersect(const Ray& ray) const noexcept {
+    return te::call<Intersections>(
+        [](auto const& self, const Ray& ray) { return self.Intersect(ray); },
+        *this,
+        ray);
+  }
+
+  Vector3 NormalAt(const Point3& point) const noexcept {
+    return te::call<Vector3>(
+        [](const auto& self, const Point3& point) {
+          return self.NormalAt(point);
+        },
+        *this,
+        point);
+  }
+};
+
+using ShapePoly = te::poly<IShape>;
 
 struct Shape {
+  enum struct Type { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE, GROUP };
+
   Shape() = default;
-  Shape(ShapeType type) : type(type) {}
+  Shape(Type type) : type(type) {}
   virtual ~Shape() = default;
 
   inline static int count = 0;
@@ -30,14 +53,14 @@ struct Shape {
   Point3 World2Object(const Point3& point) const noexcept;
   Vector3 Normal2World(const Vector3& normal) const noexcept;
 
-  virtual Intersections LocalIntersect(const Ray& ray) const = 0;
-  virtual Vector3 LocalNormalAt(const Point3& point) const = 0;
+  virtual Intersections LocalIntersect(const Ray&) const { return {}; }
+  virtual Vector3 LocalNormalAt(const Point3&) const { return {}; }
 
   int id{count++};
+  Type type{Type::BASE};
+  Shape* parent{nullptr};
   Material material;
   Transform transform{Transform::Identity()};
-  ShapeType type{ShapeType::BASE};
-  Shape* parent{nullptr};
 };
 
 }  // namespace rt

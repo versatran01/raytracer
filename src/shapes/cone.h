@@ -5,7 +5,7 @@ namespace rt {
 
 struct Cone final : public CylinderBase {
   Cone(scalar min = -kInf, scalar max = kInf, bool closed = false) noexcept
-      : CylinderBase(ShapeType::CONE, min, max, closed) {}
+      : CylinderBase(Type::CONE, min, max, closed) {}
 
   Intersections LocalIntersect(const Ray& ray) const override;
   Vector3 LocalNormalAt(const Point3& point) const override;

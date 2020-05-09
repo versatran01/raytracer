@@ -5,7 +5,7 @@
 namespace rt {
 
 struct Group final : public Shape {
-  Group() : Shape(ShapeType::GROUP) {}
+  Group() : Shape(Type::GROUP) {}
 
   Intersections LocalIntersect(const Ray& ray) const override;
   Vector3 LocalNormalAt(const Point3& point) const override;

@@ -53,8 +53,8 @@ SCENARIO("The color with an intersection behind the ray") {
   inner.material.ambient = 1;
   const Ray r{Point3(0, 0, 0.75), -Vector3::UnitZ()};
 
-  CHECK(inner.type == ShapeType::SPHERE);
-  CHECK(outer.type == ShapeType::SPHERE);
+  CHECK(inner.type == Shape::Type::SPHERE);
+  CHECK(outer.type == Shape::Type::SPHERE);
   CHECK(w.ColorAt(r) == inner.material.color);
 }
 

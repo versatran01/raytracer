@@ -40,5 +40,5 @@ SCENARIO("A ray intersecting a plane from below") {
   const auto xs = p.LocalIntersect(r);
   CHECK(xs.size() == 1);
   CHECK(xs[0].t == 1);
-  CHECK(xs[0].obj->type == ShapeType::PLANE);
+  CHECK(xs[0].obj->type == Shape::Type::PLANE);
 }
