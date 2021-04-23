@@ -2,6 +2,13 @@
 
 namespace rt {
 
+Camera::Camera(cv::Size size, scalar fov, const Transform& t)
+    : size(size),
+      fov(fov),
+      half_view(std::tan(fov / 2)),
+      pixel_size(half_view * 2 / width()),
+      transform(t) {}
+
 Ray Camera::RayAt(cv::Point point) const noexcept {
   const auto world_x = half_width() - point.x * pixel_size;
   const auto world_y = half_height() - point.y * pixel_size;

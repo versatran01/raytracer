@@ -1,6 +1,9 @@
-#include "cone.h"
+#include "shapes/cone.h"
 
 namespace rt {
+
+Cone::Cone(scalar min, scalar max, bool closed) noexcept
+    : CylinderBase(Type::CONE, min, max, closed) {}
 
 Intersections Cone::LocalIntersect(const Ray& ray) const {
   const auto a = Square(ray.direction.x()) - Square(ray.direction.y()) +

@@ -9,16 +9,11 @@ namespace rt {
 
 struct Camera {
   Camera() = default;
-  Camera(cv::Size size, scalar fov, const Transform& t = Transform::Identity())
-      : size(size),
-        fov(fov),
-        half_view(std::tan(fov / 2)),
-        pixel_size(half_view * 2 / width()),
-        transform(t) {}
+  Camera(cv::Size size, scalar fov, const Transform& t = Transform::Identity());
 
   int width() const noexcept { return size.width; }
   int height() const noexcept { return size.height; }
-  auto aspect() const noexcept {
+  scalar aspect() const noexcept {
     return static_cast<scalar>(width()) / height();
   }
 

@@ -10,8 +10,7 @@ struct Shape;
 
 struct Intersection {
   Intersection() = default;
-  Intersection(scalar t, const Shape* obj, scalar u, scalar v)
-      : t(t), obj(obj), u(u), v(v) {}
+  Intersection(scalar t, const Shape* obj, scalar u, scalar v);
   Intersection(scalar t, const Shape* obj) : Intersection(t, obj, -1, -1) {}
 
   friend bool operator==(const Intersection& lhs,

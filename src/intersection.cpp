@@ -93,4 +93,7 @@ scalar Computations::Schlick() const noexcept {
   return r0 + (1 - r0) * std::pow(1 - cos, 5);
 }
 
+Intersection::Intersection(scalar t, const Shape* obj, scalar u, scalar v)
+    : t(t), obj(obj), u(u), v(v) {}
+
 }  // namespace rt

@@ -3,8 +3,8 @@
 #include <istream>
 #include <unordered_map>
 
-#include "group.h"
-#include "triangle.h"
+#include "shapes/group.h"
+#include "shapes/triangle.h"
 #include "tuple.h"
 
 namespace rt {

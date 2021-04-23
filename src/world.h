@@ -1,7 +1,7 @@
 #pragma once
 
-#include "light.h"  // PointLight
-#include "shape.h"  // Shape, Intersections
+#include "light.h"         // PointLight
+#include "shapes/shape.h"  // Shape, Intersections
 
 namespace rt {
 

@@ -1,6 +1,6 @@
 #include "world.h"
 
-#include "sphere.h"
+#include "shapes/sphere.h"
 
 namespace rt {
 
@@ -48,8 +48,8 @@ Color World::ColorAt(const Ray& ray, int remaining) const noexcept {
   return ShadeHit(comps, remaining);
 }
 
-Color World::Reflected(const Computations& comps, int remaining) const
-    noexcept {
+Color World::Reflected(const Computations& comps,
+                       int remaining) const noexcept {
   if (remaining <= 0) return Color::Black();
   if (comps.obj->material.reflective == 0) return Color::Black();
 
@@ -58,8 +58,8 @@ Color World::Reflected(const Computations& comps, int remaining) const
   return color * comps.obj->material.reflective;
 }
 
-Color World::Refracted(const Computations& comps, int remaining) const
-    noexcept {
+Color World::Refracted(const Computations& comps,
+                       int remaining) const noexcept {
   if (remaining <= 0) return Color::Black();
   if (comps.obj->material.transparency == 0) return Color::Black();
 
