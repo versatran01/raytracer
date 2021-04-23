@@ -21,9 +21,6 @@ using Matrix3d = Eigen::Matrix3d;
 using scalar = double;
 
 template <typename T>
-using SmallVector2 = absl::InlinedVector<T, 2>;
-
-template <typename T>
 using Span = absl::Span<T>;
 
 template <typename T>

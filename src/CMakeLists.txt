@@ -28,5 +28,4 @@ target_link_libraries(
          opencv_imgproc
          opencv_imgcodecs
          opencv_highgui
-         absl::time
-         absl::container)
+         absl::time)
