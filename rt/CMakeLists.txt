@@ -80,7 +80,8 @@ cc_library(
        rt_timer
        rt_parser
        opencv_core
-       opencv_highgui)
+       opencv_highgui
+       TBB::tbb)
 
 cc_test(
   NAME render_test
