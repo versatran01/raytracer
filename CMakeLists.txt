@@ -30,9 +30,9 @@ find_package(doctest REQUIRED)
 cc_library(
   NAME base
   DEPS fmt::fmt glog::glog rt_options
-  INCDIRS src
+  INCDIRS ${CMAKE_CURRENT_SOURCE_DIR}
   INTERFACE)
 
 enable_testing()
-add_subdirectory(src)
+add_subdirectory(rt)
 add_subdirectory(examples)

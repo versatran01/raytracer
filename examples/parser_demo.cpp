@@ -3,9 +3,9 @@
 #include <fstream>
 #include <opencv2/highgui.hpp>
 
-#include "render/render.h"
-#include "shapes/shapes.h"
-#include "utils/parser.h"
+#include "rt/render.h"
+#include "rt/shapes.h"
+#include "rt/parser.h"
 
 using namespace rt;
 

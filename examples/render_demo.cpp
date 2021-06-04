@@ -3,9 +3,9 @@
 
 #include <opencv2/highgui.hpp>
 
-#include "render/render.h"
-#include "shapes/shapes.h"
-#include "utils/timer.h"
+#include "rt/render.h"
+#include "rt/shapes.h"
+#include "rt/timer.h"
 
 using namespace rt;
 
