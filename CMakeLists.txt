@@ -7,11 +7,14 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(Cache)
 include(StaticAnalyzers)
 include(CompilerWarnings)
-add_library(${PROJECT_NAME}_warnings INTERFACE)
-set_project_warnings(${PROJECT_NAME}_warnings)
+add_library(raytracer_options INTERFACE)
+enable_warnings(raytracer_options)
 
-add_library(${PROJECT_NAME}_options INTERFACE)
-target_compile_features(${PROJECT_NAME}_options INTERFACE cxx_std_17)
+include(Sanitizers)
+enable_sanitizers(raytracer_options)
+
+set(CC_TARGET_PREFIX ${PROJECT_NAME})
+include(BazelHelpers)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" On)
 option(BUILD_TESTING "Build testing" On)
