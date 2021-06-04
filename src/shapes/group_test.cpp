@@ -1,8 +1,10 @@
-#include "group.h"
+#include "shapes/group.h"
 
 #include <doctest/doctest.h>
 
-#include "sphere.h"
+#include "shapes/sphere.h"
+
+namespace {
 
 using namespace rt;
 
@@ -54,4 +56,6 @@ SCENARIO("Intersecting a transformed group") {
   const Ray r{Point3(10, 0, -10), Vector3(0, 0, 1)};
   const auto xs = g.Intersect(r);
   CHECK(xs.size() == 2);
+}
+
 }

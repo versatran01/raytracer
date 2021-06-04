@@ -1,10 +1,11 @@
-#include "shape.h"
+#include "shapes/shape.h"
 
 #include <doctest/doctest.h>
 
-#include "group.h"
-#include "sphere.h"
+#include "shapes/group.h"
+#include "shapes/sphere.h"
 
+namespace {
 using namespace rt;
 
 SCENARIO("A shape has a parent attribute") {
@@ -55,3 +56,5 @@ SCENARIO("Finding the normal on a child object") {
   const auto n = s_.NormalAt({1.7321, 1.1547, -5.5774});
   CHECK((n - Vector3(0.2857, 0.4286, -0.8571)).norm() < 1e-4);
 }
+
+}  // namespace

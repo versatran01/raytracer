@@ -1,6 +1,8 @@
-#include "plane.h"
+#include "shapes/plane.h"
 
 #include "doctest/doctest.h"
+
+namespace {
 
 using namespace rt;
 
@@ -41,4 +43,6 @@ SCENARIO("A ray intersecting a plane from below") {
   CHECK(xs.size() == 1);
   CHECK(xs[0].t == 1);
   CHECK(xs[0].obj->type == Shape::Type::PLANE);
+}
+
 }

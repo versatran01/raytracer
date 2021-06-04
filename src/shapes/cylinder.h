@@ -5,14 +5,10 @@
 namespace rt {
 
 struct CylinderBase : public Shape {
-  CylinderBase(Type type, scalar min, scalar max, bool closed) noexcept
+  CylinderBase(Type type, scalar min, scalar max, bool closed)
       : Shape(type), min(min), max(max), closed(closed) {}
 
-  static bool CheckCap(const Ray& ray, scalar t, scalar cap = 1.0) noexcept {
-    const auto x = ray.origin.x() + t * ray.direction.x();
-    const auto z = ray.origin.z() + t * ray.direction.z();
-    return (x * x + z * z) <= (cap * cap);
-  }
+  static bool CheckCap(const Ray& ray, scalar t, scalar cap = 1.0);
 
   bool closed{false};
   scalar min{-kInf};
@@ -20,7 +16,7 @@ struct CylinderBase : public Shape {
 };
 
 struct Cylinder final : public CylinderBase {
-  Cylinder(scalar min = -kInf, scalar max = kInf, bool closed = false) noexcept
+  Cylinder(scalar min = -kInf, scalar max = kInf, bool closed = false)
       : CylinderBase(Type::CYLINDER, min, max, closed) {}
 
   Intersections LocalIntersect(const Ray& ray) const override;

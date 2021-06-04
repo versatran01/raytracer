@@ -1,7 +1,4 @@
-#include "shape.h"
-
-#include "logging.h"
-#include "sphere.h"
+#include "shapes/shape.h"
 
 namespace rt {
 

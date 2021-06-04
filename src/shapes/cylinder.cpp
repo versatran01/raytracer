@@ -62,4 +62,11 @@ void Cylinder::IntersectCaps(const Ray& ray, Intersections& xs) const noexcept {
   const auto tmax = (max - ray.origin.y()) / ray.direction.y();
   if (CheckCap(ray, tmax)) xs.emplace_back(tmax, this);
 }
+
+bool CylinderBase::CheckCap(const Ray& ray, scalar t, scalar cap) {
+  const auto x = ray.origin.x() + t * ray.direction.x();
+  const auto z = ray.origin.z() + t * ray.direction.z();
+  return (x * x + z * z) <= (cap * cap);
+}
+
 }  // namespace rt

@@ -1,6 +1,8 @@
-#include "cube.h"
+#include "shapes/cube.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -73,3 +75,5 @@ SCENARIO("The normal on the surface of a cube") {
     CHECK(c.LocalNormalAt(points[i]) == normals[i]);
   }
 }
+
+}  // namespace

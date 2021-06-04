@@ -207,7 +207,7 @@ endfunction()
 # )
 # cmake-format: on
 function(cc_test)
-  cmake_parse_arguments(CC_TEST "CATKIN" "NAME"
+  cmake_parse_arguments(CC_TEST "CATKIN;OTHER" "NAME"
                         "SRCS;COPTS;DEFINES;LINKOPTS;DEPS" ${ARGN})
 
   if(CC_TARGET_PREFIX)
@@ -232,11 +232,14 @@ function(cc_test)
 
     target_compile_definitions(${_NAME} PUBLIC ${CC_TEST_DEFINES})
     target_compile_options(${_NAME} PRIVATE ${CC_TEST_COPTS})
-
     target_link_libraries(
       ${_NAME}
       PUBLIC ${CC_TEST_DEPS}
-      PRIVATE ${CC_TEST_LINKOPTS} GTest::GTest GTest::Main)
+      PRIVATE ${CC_TEST_LINKOPTS})
+
+    if(NOT CC_TEST_OTHER)
+      target_link_libraries(${_NAME} PRIVATE GTest::GTest GTest::Main)
+    endif()
 
     set_property(TARGET ${_NAME} PROPERTY CXX_STANDARD 17)
     set_property(TARGET ${_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)

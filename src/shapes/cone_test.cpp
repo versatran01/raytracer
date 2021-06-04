@@ -1,6 +1,8 @@
-#include "cone.h"
+#include "shapes/cone.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -54,3 +56,4 @@ SCENARIO("Computing the normal vector on a cone") {
     CHECK(c.LocalNormalAt(point) == normal);
   }
 }
+}  // namespace

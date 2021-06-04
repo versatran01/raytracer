@@ -1,6 +1,8 @@
-#include "triangle.h"
+#include "shapes/triangle.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -57,3 +59,5 @@ SCENARIO("A ray strikes a triangle") {
   REQUIRE(xs.size() == 1);
   CHECK(xs[0].t == 2);
 }
+
+}  // namespace

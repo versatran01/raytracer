@@ -7,10 +7,7 @@ namespace rt {
 struct Sphere final : public Shape {
   Sphere() noexcept : Shape(Type::SPHERE) {}
 
-  Vector3 LocalNormalAt(const Point3& point) const override {
-    return point - Point3::Zero();
-  }
-
+  Vector3 LocalNormalAt(const Point3& point) const override;
   Intersections LocalIntersect(const Ray& ray) const override;
 };
 

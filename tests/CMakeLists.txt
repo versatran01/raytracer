@@ -1,5 +1,3 @@
-enable_testing(true)
-
 set(TEST_SOURCES
     tuple_test.cpp
     color_test.cpp
@@ -7,21 +5,12 @@ set(TEST_SOURCES
     ray_test.cpp
     intersection_test.cpp
     transform_test.cpp
-    sphere_test.cpp
     light_test.cpp
     material_test.cpp
     world_test.cpp
     camera_test.cpp
-    plane_test.cpp
     pattern_test.cpp
-    cube_test.cpp
-    cylinder_test.cpp
-    cone_test.cpp
-    group_test.cpp
-    shape_test.cpp
-    triangle_test.cpp
     parser_test.cpp
-    smooth_triangle_test.cpp
     render_test.cpp)
 
 add_executable(raytracer_test_main raytracer_test_main.cpp ${TEST_SOURCES})

@@ -4,8 +4,8 @@
 
 #include "intersection.h"  // Intersections
 #include "material.h"      // Material
+#include "shapes/te.hpp"   // te::poly, te::call
 #include "transform.h"     // Transform
-#include "utils/te.hpp"    // te::poly, te::call
 
 namespace rt {
 

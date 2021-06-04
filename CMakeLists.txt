@@ -19,13 +19,13 @@ include(BazelHelpers)
 option(BUILD_SHARED_LIBS "Build shared libraries" On)
 option(BUILD_TESTING "Build testing" On)
 
+find_package(TBB REQUIRED)
 find_package(fmt REQUIRED)
 find_package(absl REQUIRED)
 find_package(glog REQUIRED)
 find_package(Eigen3 REQUIRED NO_MODULE)
 find_package(OpenCV 4 REQUIRED)
 find_package(doctest REQUIRED)
-find_package(TBB REQUIRED)
 
 cc_library(
   NAME base
@@ -33,7 +33,7 @@ cc_library(
   INCDIRS src
   INTERFACE)
 
+enable_testing()
 add_subdirectory(src)
 add_subdirectory(examples)
-enable_testing()
 add_subdirectory(tests)

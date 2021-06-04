@@ -1,9 +1,10 @@
 
+#include <glog/logging.h>
+
 #include <opencv2/highgui.hpp>
 
-#include "logging.h"
 #include "render.h"
-#include "shapes/shapes.h"
+#include "shapes.h"
 #include "utils/timer.h"
 
 using namespace rt;

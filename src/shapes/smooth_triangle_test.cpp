@@ -1,6 +1,8 @@
-#include "smooth_triangle.h"
+#include "shapes/smooth_triangle.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -11,4 +13,6 @@ SCENARIO("An intersection with a smooth triangle stores u/v") {
   REQUIRE(xs.size() == 1);
   CHECK(xs[0].u == doctest::Approx(0.45));
   CHECK(xs[0].v == doctest::Approx(0.25));
+}
+
 }

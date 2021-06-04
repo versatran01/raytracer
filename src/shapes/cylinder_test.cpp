@@ -1,6 +1,8 @@
-#include "cylinder.h"
+#include "shapes/cylinder.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -100,3 +102,5 @@ SCENARIO("The normal vector on a cylinder's end caps") {
     CHECK(c.LocalNormalAt(point) == normal);
   }
 }
+
+}  // namespace

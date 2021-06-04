@@ -1,6 +1,8 @@
-#include "sphere.h"
+#include "shapes/sphere.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -147,4 +149,6 @@ SCENARIO("Intersecting a scaled sphere with a ray") {
   CHECK(xs.size() == 2);
   CHECK(xs[0].t == 3);
   CHECK(xs[1].t == 7);
+}
+
 }

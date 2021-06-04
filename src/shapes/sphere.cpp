@@ -21,4 +21,8 @@ Sphere GlassSphere() noexcept {
   return s;
 }
 
+rt::Vector3 rt::Sphere::LocalNormalAt(const Point3& point) const {
+  return point - Point3::Zero();
+}
+
 }  // namespace rt
