@@ -1,7 +1,8 @@
-#include "color.h"
+#include "rt/color.h"
 
-#include "doctest/doctest.h"
+#include <doctest/doctest.h>
 
+namespace {
 using namespace rt;
 
 SCENARIO("Colors are (r, g, b) tuples") {
@@ -19,3 +20,5 @@ SCENARIO("Operations on colors") {
   CHECK(c1 * 2 == Color(1.8, 1.2, 1.4));
   CHECK((c1 * c2).isApprox(Color(0.63, 0.06, 0.14)));
 }
+
+}  // namespace

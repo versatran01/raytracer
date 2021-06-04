@@ -43,6 +43,12 @@ cc_test(
   DEPS rt_shapes rt_doctest_main
   OTHER)
 
+cc_test(
+  NAME extra_test
+  SRCS intersection_test.cpp material_test.cpp pattern_test.cpp
+  DEPS rt_core rt_shapes rt_doctest_main
+  OTHER)
+
 cc_library(
   NAME timer
   SRCS timer.cpp
@@ -74,18 +80,10 @@ cc_library(
        rt_timer
        rt_parser
        opencv_core
-       opencv_imgcodecs
        opencv_highgui)
 
 cc_test(
   NAME render_test
   SRCS camera_test.cpp canvas_test.cpp render_test.cpp world_test.cpp
   DEPS rt_render rt_doctest_main
-  OTHER)
-
-# these tests depends on shapes so we have to pull them out
-cc_test(
-  NAME extra_test
-  SRCS intersection_test.cpp material_test.cpp pattern_test.cpp
-  DEPS rt_core rt_shapes rt_doctest_main
   OTHER)
