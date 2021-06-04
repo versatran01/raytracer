@@ -1,6 +1,8 @@
-#include "tuple.h"
+#include "core/tuple.h"
 
-#include "doctest/doctest.h"
+#include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -106,4 +108,6 @@ SCENARIO("Reflecting a vector off a slanted surface") {
   const Vector3 v(0, -1, 0);
   const Vector3 n(std::sqrt(2.0) / 2.0, std::sqrt(2.0) / 2.0, 0);
   CHECK(Reflect(v, n).isApprox(Vector3(1, 0, 0)));
+}
+
 }

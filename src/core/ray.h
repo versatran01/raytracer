@@ -1,6 +1,7 @@
 #pragma once
-#include "transform.h"  // Transform
-#include "tuple.h"      // Point3, Vector3
+
+#include "core/transform.h"  // Transform
+#include "core/tuple.h"      // Point3, Vector3
 
 namespace rt {
 

@@ -1,16 +1,17 @@
-#include "timer.h"
+#include "utils/timer.h"
 
 #include <doctest/doctest.h>
+#include <glog/logging.h>
 
 #include <ostream>
 #include <thread>
 
-#include "logging.h"
+namespace {
 
 using namespace rt;
 
 TEST_CASE("Timer") {
-  TimerSummary ts("test");
+  TimerManager ts("test");
 
   auto a = ts.Manual("a");
   usleep(1000);
@@ -46,3 +47,5 @@ TEST_CASE("Timer") {
 
   LOG(INFO) << ts.ReportAll();
 }
+
+}  // namespace

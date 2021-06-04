@@ -1,6 +1,6 @@
 #include "pattern.h"
 
-#include "shape.h"
+#include "shapes/shape.h"
 
 namespace rt {
 

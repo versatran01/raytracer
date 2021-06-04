@@ -1,7 +1,10 @@
-#include "ray.h"
+#include "core/ray.h"
 
-#include "doctest/doctest.h"
-#include "transform.h"
+#include <doctest/doctest.h>
+
+#include "core/transform.h"
+
+namespace {
 
 using namespace rt;
 
@@ -31,3 +34,5 @@ SCENARIO("Scaling a ray") {
   CHECK(r2.origin == Point3(2, 6, 12));
   CHECK(r2.direction == Vector3(0, 3, 0));
 }
+
+}  // namespace

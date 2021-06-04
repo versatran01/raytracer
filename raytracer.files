@@ -68,9 +68,14 @@ src/shapes/triangle_test.cpp
 src/transform.h
 src/tuple.h
 src/types.h
+src/utils/CMakeLists.txt
+src/utils/parser.cpp
+src/utils/parser.h
+src/utils/parser_test.cpp
 src/utils/stats.h
 src/utils/timer.cpp
 src/utils/timer.h
+src/utils/timer_test.cpp
 src/utils/viz.h
 src/world.cpp
 src/world.h

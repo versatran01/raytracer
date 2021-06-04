@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"  // Vector3d
+#include "core/types.h"  // Vector3d
 
 namespace rt {
 

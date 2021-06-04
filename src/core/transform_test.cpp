@@ -1,6 +1,8 @@
-#include "transform.h"
+#include "core/transform.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -137,3 +139,5 @@ SCENARIO("An arbitrary view transformation") {
       1;
   CHECK(ViewTransform(from, to, up).matrix().isApprox(m));
 }
+
+}  // namespace

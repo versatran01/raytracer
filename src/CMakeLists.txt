@@ -3,27 +3,18 @@ cc_library(
   SRCS doctest_main.cpp
   DEPS doctest::doctest)
 
+add_subdirectory(core)
+
 cc_library(
   NAME intersection
   SRCS intersection.cpp
-  DEPS rt_base Eigen3::Eigen)
+  DEPS rt_core)
 
 add_subdirectory(shapes)
+add_subdirectory(utils)
 
-cc_library(
-  NAME utils
-  SRCS utils/timer.cpp
-  DEPS rt_base absl::time absl::strings absl::flat_hash_map)
-
-add_library(
-  raytracer SHARED
-  canvas.cpp
-  material.cpp
-  world.cpp
-  camera.cpp
-  render.cpp
-  pattern.cpp
-  parser.cpp)
+add_library(raytracer SHARED canvas.cpp material.cpp world.cpp camera.cpp
+                             render.cpp pattern.cpp)
 target_include_directories(raytracer PUBLIC . utils shapes)
 target_link_libraries(
   raytracer
@@ -32,6 +23,8 @@ target_link_libraries(
          opencv_imgcodecs
          opencv_highgui
          TBB::tbb
-         rt_intersection
+         rt_core
          rt_shapes
-         rt_utils)
+         rt_timer
+         rt_intersection
+         rt_parser)

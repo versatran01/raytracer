@@ -4,7 +4,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 
-#include "color.h"  // Color
+#include "core/color.h"  // Color
 
 namespace rt {
 

@@ -1,8 +1,9 @@
+#include <glog/logging.h>
+
 #include <opencv2/highgui.hpp>
 
 #include "canvas.h"
-#include "logging.h"
-#include "tuple.h"
+#include "core/tuple.h"
 
 using namespace rt;
 

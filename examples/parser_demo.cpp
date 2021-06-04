@@ -1,10 +1,11 @@
-#include <fstream>
+#include <glog/logging.h>
 
-#include "logging.h"
-#include "parser.h"
+#include <fstream>
+#include <opencv2/highgui.hpp>
+
 #include "render.h"
 #include "shapes.h"
-#include "viz.h"
+#include "utils/parser.h"
 
 using namespace rt;
 

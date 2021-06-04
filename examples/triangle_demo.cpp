@@ -1,7 +1,9 @@
-#include "logging.h"
+#include <glog/logging.h>
+
+#include <opencv2/highgui.hpp>
+
 #include "render.h"
 #include "shapes.h"
-#include "viz.h"
 
 using namespace rt;
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ray.h"    // Ray
-#include "tuple.h"  // Point3, Vector3
+#include "core/ray.h"    // Ray
+#include "core/tuple.h"  // Point3, Vector3
 
 namespace rt {
 

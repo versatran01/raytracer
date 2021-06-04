@@ -2,8 +2,8 @@
 
 #include <opencv2/core/types.hpp>  // cv::Size
 
-#include "ray.h"        // Ray
-#include "transform.h"  // Transform
+#include "core/ray.h"        // Ray
+#include "core/transform.h"  // Transform
 
 namespace rt {
 

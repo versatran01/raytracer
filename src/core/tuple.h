@@ -1,8 +1,6 @@
 #pragma once
 
-#include <Eigen/StdVector>
-
-#include "types.h"
+#include "core/types.h"
 
 namespace rt {
 

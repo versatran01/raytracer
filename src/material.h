@@ -2,8 +2,8 @@
 
 #include <memory>  // unique_ptr
 
-#include "color.h"    // Color
-#include "light.h"    // PointLight
+#include "core/color.h"    // Color
+#include "core/light.h"    // PointLight
 #include "pattern.h"  // Pattern
 
 namespace rt {

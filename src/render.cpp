@@ -2,8 +2,6 @@
 
 #include <tbb/parallel_for.h>
 
-#include "logging.h"
-
 namespace rt {
 
 Canvas Render(const Camera& camera,

@@ -9,7 +9,7 @@ cc_library(
        triangle.cpp
        smooth_triangle.cpp
        group.cpp
-  DEPS rt_base Eigen3::Eigen)
+  DEPS rt_base rt_core)
 
 cc_test(
   NAME shapes_test

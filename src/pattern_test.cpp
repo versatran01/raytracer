@@ -1,9 +1,10 @@
-#include "pattern.h"
+#include "core/pattern.h"
 
 #include <doctest/doctest.h>
 
-#include "sphere.h"
+#include "core/sphere.h"
 
+namespace {
 using namespace rt;
 
 SCENARIO("Creating a stripe pattern") {
@@ -121,3 +122,5 @@ SCENARIO("Checkers should repeat in z") {
   CHECK(p.PatternAt({0, 0, 0.99}) == Color::White());
   CHECK(p.PatternAt({0, 0, 1.01}) == Color::Black());
 }
+
+}  // namespace

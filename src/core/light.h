@@ -1,7 +1,7 @@
 #pragma once
 
-#include "color.h"  // Color
-#include "tuple.h"  // Point3
+#include "core/color.h"
+#include "core/tuple.h"
 
 namespace rt {
 

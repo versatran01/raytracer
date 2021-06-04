@@ -1,8 +1,8 @@
 #pragma once
 
-#include "color.h"      // Color
-#include "transform.h"  // Transform
-#include "tuple.h"      // Point3
+#include "core/color.h"      // Color
+#include "core/transform.h"  // Transform
+#include "core/tuple.h"      // Point3
 
 namespace rt {
 

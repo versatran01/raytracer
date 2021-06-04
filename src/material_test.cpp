@@ -2,10 +2,10 @@
 
 #include <doctest/doctest.h>
 
-#include "light.h"
+#include "core/light.h"
+#include "core/tuple.h"
 #include "pattern.h"
-#include "sphere.h"
-#include "tuple.h"
+#include "shapes/sphere.h"
 
 using namespace rt;
 

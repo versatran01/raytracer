@@ -1,11 +1,11 @@
 #pragma once
 
-#include <istream>
+#include <iosfwd>
 #include <unordered_map>
 
 #include "shapes/group.h"
 #include "shapes/triangle.h"
-#include "tuple.h"
+#include "core/tuple.h"
 
 namespace rt {
 
