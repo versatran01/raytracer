@@ -1,4 +1,4 @@
-#include "cube.h"
+#include "shapes/cube.h"
 
 namespace rt {
 
@@ -16,7 +16,8 @@ Intersections Cube::LocalIntersect(const Ray& ray) const {
 
 Vector3 Cube::LocalNormalAt(const Point3& point) const {
   const Point3 point_abs = point.cwiseAbs();
-  const auto maxc = std::max(point_abs.x(), std::max(point_abs.y(), point_abs.z()));
+  const auto maxc =
+      std::max(point_abs.x(), std::max(point_abs.y(), point_abs.z()));
 
   if (maxc == point_abs.x()) {
     return {point.x(), 0, 0};

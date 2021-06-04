@@ -3,13 +3,13 @@
 
 #include "logging.h"
 #include "render.h"
-#include "shapes.h"
-#include "timer.h"
+#include "shapes/shapes.h"
+#include "utils/timer.h"
 
 using namespace rt;
 
 int main(int argc, char** argv) {
-  TimerSummary ts("render_demo");
+  TimerManager ts("render_demo");
 
   Plane floor;
   floor.transform = Translation3(0, 0, 0);
@@ -73,6 +73,7 @@ int main(int argc, char** argv) {
   auto t = ts.Manual("render");
   const auto canvas = Render(camera, world, 4);
   t.Stop();
+  t.Commit();
   LOG(INFO) << ts.ReportAll();
 
   cv::imshow("image", canvas.ToBgr());

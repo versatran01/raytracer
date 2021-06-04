@@ -1,6 +1,6 @@
 #include "intersection.h"
 
-#include "shapes.h"
+#include "shapes/shapes.h"
 
 namespace rt {
 

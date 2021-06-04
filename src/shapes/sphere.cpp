@@ -1,4 +1,4 @@
-#include "sphere.h"
+#include "shapes/sphere.h"
 
 namespace rt {
 

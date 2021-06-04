@@ -1,6 +1,6 @@
-#include "group.h"
+#include "shapes/group.h"
 
-#include "logging.h"
+#include <glog/logging.h>
 
 namespace rt {
 

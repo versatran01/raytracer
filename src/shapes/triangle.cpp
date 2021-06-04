@@ -1,4 +1,4 @@
-#include "triangle.h"
+#include "shapes/triangle.h"
 
 namespace rt {
 

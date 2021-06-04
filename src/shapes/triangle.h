@@ -1,6 +1,6 @@
 #pragma once
 
-#include "shape.h"
+#include "shapes/shape.h"
 
 namespace rt {
 
@@ -21,6 +21,5 @@ struct Triangle : public Shape {
   Vector3 e1, e2;
   Vector3 normal;
 };
-
 
 }  // namespace rt

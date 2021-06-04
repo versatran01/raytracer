@@ -1,10 +1,10 @@
 #pragma once
 
-#include "cone.h"
-#include "cube.h"
-#include "cylinder.h"
-#include "group.h"
-#include "plane.h"
-#include "smooth_triangle.h"
-#include "sphere.h"
-#include "triangle.h"
+#include "shapes/cone.h"
+#include "shapes/cube.h"
+#include "shapes/cylinder.h"
+#include "shapes/group.h"
+#include "shapes/plane.h"
+#include "shapes/smooth_triangle.h"
+#include "shapes/sphere.h"
+#include "shapes/triangle.h"

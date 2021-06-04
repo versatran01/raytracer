@@ -1,6 +1,4 @@
-#include "cylinder.h"
-
-#include "logging.h"
+#include "shapes/cylinder.h"
 
 namespace rt {
 

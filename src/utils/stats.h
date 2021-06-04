@@ -1,76 +1,60 @@
 #pragma once
 
-#include <fmt/format.h>
-
-#include <boost/accumulators/accumulators.hpp>
-#include <boost/accumulators/statistics/count.hpp>
-#include <boost/accumulators/statistics/max.hpp>
-#include <boost/accumulators/statistics/mean.hpp>
-#include <boost/accumulators/statistics/min.hpp>
-#include <boost/accumulators/statistics/stats.hpp>
-#include <boost/accumulators/statistics/sum.hpp>
-#include <boost/accumulators/statistics/variance.hpp>
-#include <unordered_map>
+#include <algorithm>  // min, max
+#include <limits>     // numeric_limits
 
 namespace rt {
 
-namespace bac = boost::accumulators;
-
-/**
- * @brief The Stats class
- * Accumulates statistics of a value
- */
 template <typename T = double>
 class Stats {
  public:
-  using value_type = T;
-
   void Add(const T& value) noexcept {
+    ++count_;
+    sum_ += value;
+    min_ = std::min(min_, value);
+    max_ = std::max(max_, value);
     last_ = value;
-    acc_(value);
-  }
-  void Reset() noexcept { acc_ = {}; }
-
-  int Count() const noexcept { return count_(acc_); }
-  T Sum() const noexcept { return sum_(acc_); }
-  T Mean() const noexcept { return mean_(acc_); }
-  T Min() const noexcept { return min_(acc_); }
-  T Max() const noexcept { return max_(acc_); }
-  const T& Last() const noexcept { return last_; }
-
-  /// A summary of statistics
-  using SummaryT = std::unordered_map<std::string, T>;
-
-  SummaryT Summary() const noexcept {
-    return {{"mean", Mean()},  // to make it first
-            {"last", Last()},
-            {"sum", Sum()},
-            {"min", Min()},
-            {"max", Max()}};
   }
 
-  std::string repr() const {
-    std::string result = fmt::format("n: {:<6}| ", Count());
-    for (const auto& kv : Summary()) {
-      result += fmt::format("{}: {:<14}| ", kv.first, kv.second);
+  bool ok() const noexcept { return count_ > 0; }
+  int count() const noexcept { return count_; }
+  T sum() const noexcept { return sum_; }
+  T min() const noexcept { return min_; }
+  T max() const noexcept { return max_; }
+  T last() const noexcept { return last_; }
+  T mean() const noexcept { return count_ > 0 ? sum_ / count_ : T{}; }
+
+  Stats<T>& operator+=(const Stats<T>& rhs) noexcept {
+    if (rhs.count() > 0) {
+      count_ += rhs.count();
+      sum_ += rhs.sum();
+      min_ = std::min(min_, rhs.min());
+      max_ = std::max(max_, rhs.max());
+      last_ = rhs.last();
     }
-    return result;
+    return *this;
+  }
+
+  friend Stats<T> operator+(Stats<T> lhs, const Stats<T>& rhs) noexcept {
+    lhs += rhs;
+    return lhs;
   }
 
  private:
-  using stats = bac::stats<bac::tag::count,
-                           bac::tag::sum,
-                           bac::tag::mean,
-                           bac::tag::min,
-                           bac::tag::max>;
-
-  bac::accumulator_set<T, stats> acc_;
-  bac::extractor<bac::tag::count> count_;
-  bac::extractor<bac::tag::sum> sum_;
-  bac::extractor<bac::tag::mean> mean_;
-  bac::extractor<bac::tag::min> min_;
-  bac::extractor<bac::tag::max> max_;
-  T last_;
+  int count_{0};
+  T sum_{};
+  T min_{std::numeric_limits<T>::max()};
+  T max_{std::numeric_limits<T>::lowest()};
+  T last_{};
 };
+
+using StatsF = Stats<float>;
+using StatsD = Stats<double>;
+
+// in .h
+// extern template class Stats<float>;
+// extern template class Stats<double>;
+// in .cpp
+// template class Stats<double>;
 
 }  // namespace rt

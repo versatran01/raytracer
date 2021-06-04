@@ -1,6 +1,6 @@
 #pragma once
 
-#include "shape.h"  // Shape
+#include "shapes/shape.h"
 
 namespace rt {
 
