@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "core/transform.h"  // Transform
-#include "intersection.h"    // Intersections
-#include "material.h"        // Material
-#include "shapes/te.hpp"     // te::poly, te::call
+#include "core/intersection.h"  // Intersections
+#include "core/transform.h"     // Transform
+#include "core/material.h"           // Material
+#include "shapes/te.hpp"        // te::poly, te::call
 
 namespace rt {
 

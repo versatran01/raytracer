@@ -1,8 +1,10 @@
-#include "intersection.h"
+#include "core/intersection.h"
 
 #include <doctest/doctest.h>
 
-#include "shapes.h"
+#include "shapes/shapes.h"
+
+namespace {
 
 using namespace rt;
 
@@ -126,4 +128,6 @@ SCENARIO("An intersection with u and v") {
   const Intersection i(3.5, &t, 0.2, 0.4);
   CHECK(i.u == 0.2);
   CHECK(i.v == 0.4);
+}
+
 }

@@ -1,10 +1,11 @@
-#include "world.h"
+#include "render/world.h"
 
 #include <doctest/doctest.h>
 
-#include "intersection.h"
-#include "shapes.h"
+#include "core/intersection.h"
+#include "shapes/shapes.h"
 
+namespace {
 using namespace rt;
 
 SCENARIO("Creating a world") {
@@ -218,7 +219,8 @@ SCENARIO("The refracted color with an opaque surface") {
 //   shape->material.refractive_index = 1.5;
 //   const Ray r{Point3(0, 0, kSqrt2 / 2), Vector3(0, 1, 0)};
 //   const Intersections xs = {{-kSqrt2 / 2, shape}, {kSqrt2 / 2, shape}};
-//   // NOTE: this time you're inside the sphere, so you need to look at the second
+//   // NOTE: this time you're inside the sphere, so you need to look at the
+//   second
 //   // intersection
 //   const Computations comps(xs[1], r, xs);
 //   CHECK(w.Refracted(comps) == Color::Black());
@@ -278,3 +280,5 @@ SCENARIO("ShadeHit with a reflective, transparent material") {
   const Computations comps(xs[0], r, xs);
   CHECK((w.ShadeHit(comps) - Color(0.93991, 0.69643, 0.69243)).norm() < 1e-2);
 }
+
+}  // namespace

@@ -1,8 +1,8 @@
-#include "canvas.h"
+#include "render/canvas.h"
 
-#include <opencv2/core.hpp>
+#include <doctest/doctest.h>
 
-#include "doctest/doctest.h"
+namespace {
 
 using namespace rt;
 
@@ -39,3 +39,5 @@ SCENARIO("Save canvas") {
 
   CHECK(SaveCanvas(c, "/tmp/canvas.png"));
 }
+
+}  // namespace

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "camera.h"
-#include "canvas.h"
-#include "world.h"
+#include "render/camera.h"
+#include "render/canvas.h"
+#include "render/world.h"
 
 namespace rt {
 

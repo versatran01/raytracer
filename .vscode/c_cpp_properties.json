@@ -6,7 +6,9 @@
         "limitSymbolsToIncludedHeaders": true
       },
       "includePath": [
-        "${workspaceFolder}/src"
+        "${workspaceFolder}/src",
+        "/usr/local/include/eigen3",
+        "/usr/local/include/opencv4"
       ],
       "name": "ROS",
       "compileCommands": "${workspaceFolder}/build/compile_commands.json"

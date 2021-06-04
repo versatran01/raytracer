@@ -2,9 +2,10 @@
 
 #include <doctest/doctest.h>
 
-#include "core/sphere.h"
+#include "shapes/sphere.h"
 
 namespace {
+
 using namespace rt;
 
 SCENARIO("Creating a stripe pattern") {

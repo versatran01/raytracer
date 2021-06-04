@@ -3,8 +3,8 @@
 #include <fstream>
 #include <opencv2/highgui.hpp>
 
-#include "render.h"
-#include "shapes.h"
+#include "render/render.h"
+#include "shapes/shapes.h"
 #include "utils/parser.h"
 
 using namespace rt;

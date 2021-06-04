@@ -1,11 +1,13 @@
-#include "material.h"
+#include "core/material.h"
 
 #include <doctest/doctest.h>
 
 #include "core/light.h"
+#include "core/pattern.h"
 #include "core/tuple.h"
-#include "pattern.h"
 #include "shapes/sphere.h"
+
+namespace {
 
 using namespace rt;
 
@@ -109,4 +111,6 @@ SCENARIO("Transparency and Refractive index for the default material") {
   const Material m;
   CHECK(m.transparency == 0.0);
   CHECK(m.refractive_index == 1.0);
+}
+
 }

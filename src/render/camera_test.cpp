@@ -1,7 +1,8 @@
-#include "camera.h"
+#include "render/camera.h"
 
 #include <doctest/doctest.h>
-#include <fmt/format.h>
+
+namespace {
 
 using namespace rt;
 
@@ -45,3 +46,5 @@ SCENARIO("Constructing a ray when the camera is tarnsformed") {
   CHECK(r.origin == Point3(0, 2, -5));
   CHECK(r.direction.isApprox(Vector3(kSqrt2 / 2, 0, -kSqrt2 / 2)));
 }
+
+}  // namespace

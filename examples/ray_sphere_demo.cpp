@@ -1,8 +1,8 @@
 #include <opencv2/highgui.hpp>
 
-#include "canvas.h"
+#include "render/canvas.h"
 #include "core/ray.h"
-#include "intersection.h"
+#include "core/intersection.h"
 #include "shapes/sphere.h"
 
 using namespace rt;

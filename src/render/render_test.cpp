@@ -1,6 +1,8 @@
-#include "render.h"
+#include "render/render.h"
 
 #include <doctest/doctest.h>
+
+namespace {
 
 using namespace rt;
 
@@ -14,3 +16,5 @@ SCENARIO("Rendering a world with a camera") {
   CHECK((v - Color(0.380661193081, 0.475826491351, 0.285495894811)).norm() <
         kEps);
 }
+
+}  // namespace

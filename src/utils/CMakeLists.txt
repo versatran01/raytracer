@@ -12,7 +12,7 @@ cc_test(
 cc_library(
   NAME parser
   SRCS parser.cpp
-  DEPS rt_base rt_core rt_shapes rt_intersection)
+  DEPS rt_base rt_core rt_shapes)
 
 cc_test(
   NAME parser_test

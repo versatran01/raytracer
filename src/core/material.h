@@ -4,7 +4,7 @@
 
 #include "core/color.h"    // Color
 #include "core/light.h"    // PointLight
-#include "pattern.h"  // Pattern
+#include "core/pattern.h"  // Pattern
 
 namespace rt {
 

@@ -1,4 +1,4 @@
-#include "material.h"
+#include "core/material.h"
 
 namespace rt {
 

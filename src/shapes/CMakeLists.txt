@@ -22,5 +22,5 @@ cc_test(
        shape_test.cpp
        triangle_test.cpp
        smooth_triangle_test.cpp
-  DEPS rt_shapes rt_intersection rt_doctest_main
+  DEPS rt_shapes rt_doctest_main
   OTHER)

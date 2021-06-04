@@ -2,7 +2,7 @@
 
 #include <opencv2/highgui.hpp>
 
-#include "canvas.h"
+#include "render/canvas.h"
 #include "core/tuple.h"
 
 using namespace rt;

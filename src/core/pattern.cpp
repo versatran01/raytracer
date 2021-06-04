@@ -1,4 +1,4 @@
-#include "pattern.h"
+#include "core/pattern.h"
 
 #include "shapes/shape.h"
 

@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "render/camera.h"
 
 namespace rt {
 

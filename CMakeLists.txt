@@ -36,4 +36,3 @@ cc_library(
 enable_testing()
 add_subdirectory(src)
 add_subdirectory(examples)
-add_subdirectory(tests)

@@ -1,4 +1,4 @@
-#include "intersection.h"
+#include "core/intersection.h"
 
 #include "shapes/shape.h"
 

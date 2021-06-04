@@ -4,27 +4,13 @@ cc_library(
   DEPS doctest::doctest)
 
 add_subdirectory(core)
-
-cc_library(
-  NAME intersection
-  SRCS intersection.cpp
-  DEPS rt_core)
-
 add_subdirectory(shapes)
 add_subdirectory(utils)
+add_subdirectory(render)
 
-add_library(raytracer SHARED canvas.cpp material.cpp world.cpp camera.cpp
-                             render.cpp pattern.cpp)
-target_include_directories(raytracer PUBLIC . utils shapes)
-target_link_libraries(
-  raytracer
-  PUBLIC opencv_core
-         opencv_imgproc
-         opencv_imgcodecs
-         opencv_highgui
-         TBB::tbb
-         rt_core
-         rt_shapes
-         rt_timer
-         rt_intersection
-         rt_parser)
+# these tests depends on shapes so we have to pull them out
+cc_test(
+  NAME extra_test
+  SRCS core/intersection_test.cpp core/material_test.cpp core/pattern_test.cpp
+  DEPS rt_core rt_shapes rt_doctest_main
+  OTHER)
