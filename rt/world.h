@@ -1,6 +1,7 @@
 #pragma once
 
-#include "rt/light.h"         // PointLight
+#include "rt/light.h"  // PointLight
+#include "rt/ray.h"
 #include "rt/shape.h"  // Shape, Intersections
 
 namespace rt {
@@ -8,12 +9,9 @@ namespace rt {
 struct World {
   World() = default;
 
-  template <typename T>
-  void AddShape(const T& shape) noexcept {
-    shapes.push_back(shape);
-  }
+  void AddShape(const PolyShape& shape) { shapes.push_back(shape); }
 
-  void set_light(const PointLight& l) noexcept { light = l; }
+  void set_light(const PointLight& l) { light = l; }
 
   Intersections Intersect(const Ray& ray) const noexcept;
   Color ColorAt(const Ray& ray, int remaining = 1) const noexcept;

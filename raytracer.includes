@@ -1,7 +1,4 @@
-src
+.
 
 /usr/local/include/eigen3
 /usr/local/include/opencv4
-src/shapes
-src/utils
-src/core

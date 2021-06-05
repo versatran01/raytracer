@@ -2,20 +2,18 @@
 
 #include <memory>
 
-#include "rt/intersection.h"  // Intersections
-#include "rt/transform.h"     // Transform
-#include "rt/material.h"           // Material
-#include "rt/te.hpp"        // te::poly, te::call
+#include "rt/intersection.h"
+#include "rt/material.h"
+#include "rt/transform.h"
 
 namespace rt {
-
-namespace te = boost::te;
 
 struct Shape {
   enum struct Type { BASE, SPHERE, PLANE, CUBE, CYLINDER, CONE, GROUP };
 
   Shape() = default;
-  Shape(Type type) : type(type) {}
+  explicit Shape(Type type) : type(type) {}
+
   virtual ~Shape() = default;
 
   inline static int counter = 0;
@@ -45,45 +43,32 @@ struct Shape {
   Shape* parent{nullptr};
 };
 
-struct IShape {
+class PolyShape {
+ public:
+  PolyShape() = default;
+
+  template <typename T>
+  PolyShape(T x) : self_(std::make_shared<T>(std::move(x))) {}
+
   Intersections Intersect(const Ray& ray) const noexcept {
-    return te::call<Intersections>(
-        [](auto const& self, const Ray& ray) { return self.Intersect(ray); },
-        *this,
-        ray);
-  }
-
-  Vector3 NormalAt(const Point3& point) const noexcept {
-    return te::call<Vector3>(
-        [](const auto& self, const Point3& point) {
-          return self.NormalAt(point);
-        },
-        *this,
-        point);
-  }
-
-  Shape::Type type() const noexcept {
-    return te::call<Shape::Type>([](const auto& self) { return self.type; },
-                                 *this);
-  }
-
-  int id() const noexcept {
-    return te::call<int>([](const auto& self) { return self.id; }, *this);
-  }
-
-  Material material() const noexcept {
-    return te::call<Material>([](const auto& self) { return self.material; },
-                              *this);
+    return self_->Intersect(ray);
   }
 
   Intersection MakeIntersection(double t) const noexcept {
-    return te::call<Intersection>(
-        [](const auto& self, double t) { return self.MakeIntersection(t); },
-        *this,
-        t);
+    return self_->MakeIntersection(t);
   }
-};
 
-using PolyShape = te::poly<IShape>;
+  Vector3 NormalAt(const Point3& point) const noexcept {
+    return self_->NormalAt(point);
+  }
+
+  Shape::Type type() const noexcept { return self_->type; }
+  int id() const noexcept { return self_->id; }
+
+  Material material() const noexcept { return self_->material; }
+
+ protected:
+  std::shared_ptr<const Shape> self_{nullptr};
+};
 
 }  // namespace rt
