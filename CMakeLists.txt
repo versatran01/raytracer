@@ -4,17 +4,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-include(Cache)
-include(StaticAnalyzers)
-include(CompilerWarnings)
+set(CC_TARGET_PREFIX rt)
+include(CMakeHelpers)
 add_library(rt_options INTERFACE)
 enable_warnings(rt_options)
-
-include(Sanitizers)
 enable_sanitizers(rt_options)
-
-set(CC_TARGET_PREFIX rt)
-include(BazelHelpers)
 
 option(BUILD_SHARED_LIBS "Build shared libraries" On)
 option(BUILD_TESTING "Build testing" On)
